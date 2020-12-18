@@ -20,7 +20,6 @@ require('./logger/logger.js');
 
 // コマンドライン引数から分割したいファイルのパスを取得
 let filePath = process.argv[2];
-filePath = "D:\\github\\BunkatsuKun\\_test\\じょうしょうたん6.txt"
 
 
 // ファイルが存在しなければ終了
