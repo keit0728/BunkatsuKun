@@ -11,7 +11,7 @@
 
 // モジュール読み込み
 const fileOperation = require('./file-operation/file-operation.js');
-const message = require('./message/message.js');
+global.message = require('./message/message.js');
 const propertiesReader = require('properties-reader');
 const fs = require('fs');
 const path = require('path');
@@ -20,6 +20,7 @@ require('./logger/logger.js');
 
 // コマンドライン引数から分割したいファイルのパスを取得
 let filePath = process.argv[2];
+filePath = "D:\\github\\BunkatsuKun\\_test\\じょうしょうたん6.txt"
 
 
 // ファイルが存在しなければ終了
