@@ -20,7 +20,6 @@ require('./logger/logger.js');
 
 // コマンドライン引数から分割したいファイルのパスを取得
 let filePath = process.argv[2];
-// filePath = "D:\\MyStudy\\Nodejs\\BunkatsuKun\\_test\\test.txt";
 
 
 // ファイルが存在しなければ終了
@@ -55,5 +54,3 @@ logger.info(`${settingFilePath} ${message.SUCCESS_READ_FILE}`);
 logger.info(`${message.START_SPILIT_FILE}${lineLimit}行ごとにファイルを分割します。`);
 console.log(`${filePath} を分割中...`);
 fileOperation.splitFile(filePath, lineLimit);
-console.log('完了！');
-logger.info(message.FINISH_SPILIT_FILE);
