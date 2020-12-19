@@ -38,7 +38,7 @@ if (!regex.test(extention)) {
     console.log(message.OUT_OF_TARGET_FILES);
     return;
 }
-logger.info(`${filePath} ${message.SUCCESS_READ_FILE}`);
+logger.info(`${filePath} ${message.READ_FILE_SUCCESS}`);
 
 
 // 設定ファイル読み込み
@@ -50,7 +50,7 @@ if (!fs.existsSync(settingFilePath)) { //ファイルが存在しないなら終
 }
 const properties = propertiesReader(settingFilePath);
 const lineLimit = properties.get('settings.lineLimit');
-logger.info(`${settingFilePath} ${message.SUCCESS_READ_FILE}`);
+logger.info(`${settingFilePath} ${message.READ_FILE_SUCCESS}`);
 
 
 // ファイル分割
