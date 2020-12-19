@@ -36,6 +36,7 @@ const regex = /.txt|.csv/gi;
 if (!regex.test(extention)) {
     logger.error(message.OUT_OF_TARGET_FILES);
     console.log(message.OUT_OF_TARGET_FILES);
+    return;
 }
 logger.info(`${filePath} ${message.SUCCESS_READ_FILE}`);
 
@@ -44,7 +45,8 @@ logger.info(`${filePath} ${message.SUCCESS_READ_FILE}`);
 const settingFilePath = `${__dirname}\\settings.ini`;
 if (!fs.existsSync(settingFilePath)) { //ファイルが存在しないなら終了
     logger.error(message.NOT_FOUND_SETTINGFILES);
-    throw new Error(message.NOT_FOUND_SETTINGFILES);
+    console.log(message.NOT_FOUND_SETTINGFILES);
+    return;
 }
 const properties = propertiesReader(settingFilePath);
 const lineLimit = properties.get('settings.lineLimit');
