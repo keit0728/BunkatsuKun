@@ -57,7 +57,6 @@ module.exports = {
             dataBuf = '';
             console.log('完了！');
             logger.info(message.FINISH_SPILIT_FILE);
-            // console.log('end');
         });
     },
 }
