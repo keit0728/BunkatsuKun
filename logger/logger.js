@@ -9,13 +9,14 @@
 
 const winston = require('winston');
 require('winston-daily-rotate-file');
+const path = require('path');
 
 const disable_debug_mode = false;
-const directoryName = 'log/%DATE%';
+const directoryName = `${path.dirname(process.argv[1])}\\log\\%DATE%`;
 
 const transport_debug = new (winston.transports.DailyRotateFile)({
   name: 'debug-file',
-  filename: `${directoryName}/debug-%DATE%`,
+  filename: `${directoryName}\\debug-%DATE%`,
   datePattern: 'YYYY-MM-DD',
   level: 'debug',
   silent: disable_debug_mode,
@@ -27,7 +28,7 @@ const transport_debug = new (winston.transports.DailyRotateFile)({
 
 const transport_info = new (winston.transports.DailyRotateFile)({
   name: 'info-file',
-  filename: `${directoryName}/info-%DATE%`,
+  filename: `${directoryName}\\info-%DATE%`,
   datePattern: 'YYYY-MM-DD',
   level: 'info',
   maxSize: '10m',
@@ -38,7 +39,7 @@ const transport_info = new (winston.transports.DailyRotateFile)({
 
 const transport_error = new (winston.transports.DailyRotateFile)({
   name: 'error-file',
-  filename: `${directoryName}/error-%DATE%`,
+  filename: `${directoryName}\\error-%DATE%`,
   datePattern: 'YYYY-MM-DD',
   level: 'error',
   maxSize: '10m',
