@@ -37,13 +37,23 @@ module.exports = {
         let n = 0;
         let tmpN = 0;
         let dataBuf = '';
+        let fileNumber = 0;
         rl.on('line', chunk => {
             dataBuf = `${dataBuf}${chunk}\n`;
             n++;
             if (n == lineLimit) {
                 tmpN = tmpN + n;
                 let ws = fs.createWriteStream(`${mainDirectory}\\${directoryName}\\${onlyFileName}-${tmpN/lineLimit}${extension}`, 'utf8');
-                ws.write(dataBuf);
+                ws.write(dataBuf, (err) => {
+                    fileNumber++;
+                    if (err) {
+                        logger.error(`${onlyFileName}-${fileNumber}${extension}${message.WRITE_FILE_FAILURE}`);
+                        console.log(`${onlyFileName}-${fileNumber}${extension}${message.WRITE_FILE_FAILURE}`);
+                        return;
+                    }
+                    logger.info(`${onlyFileName}-${fileNumber}${extension}${message.WRITE_FILE_SUCCESS}`);
+                    console.log(`${onlyFileName}-${fileNumber}${extension}${message.WRITE_FILE_SUCCESS}`);
+                });
                 n = 0;
                 dataBuf = '';
             }
@@ -52,11 +62,20 @@ module.exports = {
         // 最終行に到達したら最後に溜まっているdataを吐き出して終了
         rl.on('close', () => {
             let ws = fs.createWriteStream(`${mainDirectory}\\${directoryName}\\${onlyFileName}-${(tmpN/lineLimit)+1}${extension}`, 'utf8');
-            ws.write(dataBuf);
+            ws.write(dataBuf, (err) => {
+                fileNumber++;
+                if (err) {
+                    logger.error(`${onlyFileName}-${fileNumber}${extension}${message.WRITE_FILE_FAILURE}`);
+                    console.log(`${onlyFileName}-${fileNumber}${extension}${message.WRITE_FILE_FAILURE}`);
+                    return;
+                }
+                logger.info(`${onlyFileName}-${fileNumber}${extension}${message.WRITE_FILE_SUCCESS}`);
+                console.log(`${onlyFileName}-${fileNumber}${extension}${message.WRITE_FILE_SUCCESS}`);
+                logger.info(message.FINISH_SPILIT_FILE);
+                console.log('ファイルの分割が完了しました。');
+            });
             n = 0;
             dataBuf = '';
-            console.log('完了！');
-            logger.info(message.FINISH_SPILIT_FILE);
         });
     },
 }
