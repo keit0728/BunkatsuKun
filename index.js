@@ -25,7 +25,8 @@ let filePath = process.argv[2];
 // ファイルが存在しなければ終了
 if (typeof filePath === "undefined") {
     logger.error(message.NO_SPLITTABLE_FILES_FOUND);
-    throw new Error(message.NO_SPLITTABLE_FILES_FOUND);
+    console.log(message.NO_SPLITTABLE_FILES_FOUND);
+    return;
 }
 
 
@@ -34,7 +35,7 @@ const extention = path.extname(filePath);
 const regex = /.txt|.csv/gi;
 if (!regex.test(extention)) {
     logger.error(message.OUT_OF_TARGET_FILES);
-    throw new Error(message.OUT_OF_TARGET_FILES);
+    console.log(message.OUT_OF_TARGET_FILES);
 }
 logger.info(`${filePath} ${message.SUCCESS_READ_FILE}`);
 
