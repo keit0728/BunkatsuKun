@@ -54,6 +54,5 @@ logger.info(`${settingFilePath} ${message.READ_FILE_SUCCESS}`);
 
 
 // ファイル分割
-logger.info(`${message.START_SPILIT_FILE}${lineLimit}行ごとにファイルを分割します。`);
-console.log(`${filePath} を分割中...`);
+logger.info(`${message.START_SPILIT_FILE}`);
 fileOperation.splitFile(filePath, lineLimit);
